@@ -1,0 +1,904 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  
+<link rel="shortcut icon" href="https://t4.ftcdn.net/jpg/02/29/53/11/360_F_229531197_jmFcViuzXaYOQdoOK1qyg7uIGdnuKhpt.jpg">
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Agenda Médica</title>
+
+  <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/fullpage/fullpage-1580f96ce81ff0a427cf57dda2748ce646c38efc201ae5942a29958cffa6856d.css">
+  
+  
+
+
+
+
+
+  <title>Agenda Citas Médicas</title>
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+ 
+
+  <style>
+    html { font-size: 15px; }
+    html, body { margin: 0; padding: 0; min-height: 100%; }
+    body { height:100%; display: flex; flex-direction: column; }
+    .referer-warning {
+      background: black;
+      box-shadow: 0 2px 5px rgba(0,0,0, 0.5);
+      padding: 0.75em;
+      color: white;
+      text-align: center;
+      font-family: var(--cp-font-family);
+      line-height: 1.2;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .referer-warning h1 { font-size: 1.2rem; margin: 0; }
+    .referer-warning a { color: #56bcf9; } /* $linkColorOnBlack */
+  </style>
+</head>
+
+<body class="">
+  
+
+  <div id="result-iframe-wrap" role="main">
+
+    <iframe id="result" srcdoc="
+<!DOCTYPE html>
+<html lang=&quot;en&quot; >
+
+<head>
+
+  <meta charset=&quot;UTF-8&quot;>
+  
+<link rel=&quot;apple-touch-icon&quot; type=&quot;image/png&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png&quot; />
+<meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;CodePen&quot;>
+
+<link rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico&quot; />
+
+<link rel=&quot;mask-icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg&quot; color=&quot;#111&quot; />
+
+
+  <title>CodePen - Calendar/Planner</title>
+  
+  
+  
+  
+<style>
+body {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 400;
+}
+
+h3,h4,h5 {
+   font-weight: 300 !important;
+}
+
+.calendar-wrapper {
+   height: auto;
+   max-width: 730px;
+   margin: 0 auto;
+}
+
+.calendar-header {
+   background-color: rgba(18, 15, 25, 0.25);
+   height: 100%;
+   padding: 20px;
+   color: #fff;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   position: relative;
+}
+
+.header-title {
+   padding-left: 15%;
+}
+
+.header-background {
+   background-image: url(&quot;https://st2.depositphotos.com/1448734/7553/i/950/depositphotos_75531271-stock-photo-doctor-writing-medical-record.jpg&quot;);
+   height: 200px;
+   background-position: center right;
+   background-size: cover;
+}
+
+.calendar-content {
+   background-color: #fff;
+   padding: 20px;
+   padding-left: 15%;
+   padding-right: 15%;
+   overflow: hidden;
+}
+
+.event-mark {
+   width: 5px;
+   height: 5px;
+   background-color: teal;
+   border-radius: 100px;
+   position: absolute;
+   left: 46%;
+   top: 70%;
+}
+
+.calendar-footer {
+   height: 200px;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   text-align: center;
+   background-color: #4b6289 !important;
+   position: relative;
+   overflow: hidden;
+}
+
+.addForm {
+   position: absolute;
+   top: 100%;
+   width: 100%;
+   height: 100%;
+   background-color: #4b5889 !important;
+   transition: top 0.5s cubic-bezier(1, 0, 0, 1);
+   padding: 0 5px 0 5px;
+}
+
+.addForm input {
+   color: #fff;
+}
+
+.addForm .row {
+   padding-left: 0.75rem;
+   padding-right: 0.75rem;
+   margin-bottom: 0;
+}
+
+.addForm h4 {
+   color: #fff;
+   margin-bottom: 1rem;
+}
+
+.addEventButtons {
+   text-align: right;
+   padding: 0 0.75rem 0 0.75rem;
+   margin-top:-30%;
+}
+
+.addEventButtons a {
+   color: black;
+   font-weight: 300;
+}
+
+.emptyForm {
+   padding: 20px;
+   padding-left: 15%;
+   padding-right: 15%;
+}
+
+.emptyForm h4 {
+   color: #fff;
+   margin-bottom: 2rem;
+}
+
+.sidebar-wrapper {
+   color: #fff;
+   background-color: #5a649c !important;
+   padding-top: 0;
+   padding-bottom: 20px;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   padding-left: 0;
+   padding-right: 0;
+}
+
+.sidebar-title {
+   padding: 50px 6% 50px 12%;
+}
+
+.sidebar-title h4 {
+   margin-top: 0;
+}
+
+.sidebar-events {
+   overflow-x: hidden;
+   overflow-y: hidden;
+   margin-bottom: 70px;
+}
+
+.empty-message {
+   font-size: 1.2rem;
+   padding: 15px 6% 15px 12%;
+}
+
+.eventCard {
+   background-color: #fff;
+   color: black;
+   padding: 12px 24px 12px 24px;
+   border-bottom: 1px solid #E5E5E5;
+   white-space: nowrap;
+   position: relative;
+   animation: slideInDown 0.5s;
+}
+
+.eventCard-nombre {
+   font-weight: bold;
+}
+
+.eventCard-apellidopaterno {
+   color: grey;
+}
+
+.eventCard-mark-wrapper {
+   position: absolute;
+   right: 0;
+   top: 0;
+   height: 100%;
+   width: 60px;
+   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 100%);
+}
+
+.eventCard-mark {
+   width: 8px;
+   height: 8px;
+   background-color: #b39ddb;
+   border-radius: 100px;
+   position: absolute;
+   left: 50%;
+   top: 45%;
+}
+
+.day-mark {
+   width: 7px;
+   height: 7px;
+   background-color: #b39ddb;
+   border-radius: 100px;
+   position: absolute;
+  }
+
+.content-wrapper {
+   padding-top: 50px;
+   padding-bottom: 50px;
+   margin-left: 300px;
+}
+
+#table-body .col:hover {
+   cursor: pointer;
+   /*border: 1px solid grey;*/
+   background-color: #E0E0E0;
+}
+
+.empty-day:hover {
+   cursor: default !important;
+   background-color: #fff !important;
+}
+
+#table-header .row .col {
+   padding: .75rem;
+   width: 13%;
+}
+
+#table-body .row .col {
+   padding: .75rem;
+   width: 13%;
+}
+
+#table-body .col {
+   border: 1px solid transparent;
+}
+
+#table-body {}
+
+#table-body .row {
+   margin-bottom: 0;
+}
+
+#table-body .col {
+   padding-top: 1.3rem !important;
+   padding-bottom: 1.3rem !important;
+}
+
+#table-header {
+   margin: 0 auto;
+   display: inline-block;
+   width: 100%;
+}
+
+#table-body {
+   margin: 0 auto;
+   display: inline-block;
+   width: 100%;
+}
+
+#calendar-table {
+   text-align: center;
+}
+
+.prev-button {
+   position: absolute;
+   cursor: pointer;
+   left: 0%;
+   top: 35%;
+   color: grey !important;
+}
+
+.prev-button i {
+   font-size: 4em;
+}
+
+.next-button {
+   position: absolute;
+   cursor: pointer;
+   right: 0%;
+   top: 35%;
+   color: grey !important;
+}
+
+.next-button i {
+   font-size: 4em;
+}
+
+.addEvent {
+   box-shadow: 0 5px 15px rgb(57, 168, 228);
+   background-color: #39a8e4;
+   padding: 10px;
+   padding-left: 3em;
+   padding-right: 3em;
+   cursor: pointer;
+   border-radius: 25px;
+   color: #fff !important;
+   background-image: linear-gradient(135deg, #8d8dd4, #45ced4);
+}
+
+.addEvent:hover {
+   transition: box-shadow 0.5s;
+   box-shadow: 0 4px 25px rgb(57, 168, 228);
+}
+
+.mobile-header {
+   padding: 0;
+   display: none;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   position: fixed;
+   z-index: 99;
+   width: 100%;
+   background-color: #5a649c !important;
+}
+
+.mobile-header a i {
+   color: #fff;
+   font-size: 38px;
+}
+
+.mobile-header h4 {
+   color: #fff;
+}
+
+.mobile-header .row {
+   margin-bottom: 0;
+}
+
+.mobile-header h4 {
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+}
+
+@media (max-width:992px) {
+   .content-wrapper {
+      margin-left: 0;
+   }
+   .mobile-header {
+      display: block;
+   }
+   .calendar-wrapper {
+      margin-top: 80px;
+   }
+   .sidebar-wrapper {
+      background-color: #EEEEEE !important;
+   }
+   .sidebar-title {
+      background-color: #5A649C !important;
+   }
+   .empty-message {
+      color: black;
+   }
+}
+
+@media (max-width:767px) {
+   .content-wrapper .container {
+      width: auto;
+   }
+   .calendar-content {
+      padding-left: 5%;
+      padding-right: 5%;
+   }
+   body .row {
+      margin-bottom: 0;
+   }
+}
+
+@media (max-width:450px) {
+   .content-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+   }
+   .content-wrapper .container {
+      padding-left: 0;
+      padding-right: 0;
+   }
+}
+
+#logout {
+   padding: 0;
+   display: absolute;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   position: fixed;
+   z-index: 99;
+   width: 100%;
+   background-color: #5a649c !important;
+}
+
+#logo {
+   margin: 0px 20px 0px -10%;
+   z-index: 99;
+   width: 100%;
+   background-color: #5a649c !important;
+}
+
+#logo-m {
+   margin: 0px 20px 0px -10%;
+   z-index: 99;
+   width: 50%;
+   background-color: #5a649c !important;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage(&quot;resize&quot;, &quot;*&quot;);
+  }
+</script>
+
+
+</head>
+
+<body translate=&quot;no&quot; >
+  <html>
+  <head>
+    <meta charset=&quot;utf-8&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css&quot;>
+    <link href=&quot;https://fonts.googleapis.com/css?family=Roboto:300,400,500&quot; rel=&quot;stylesheet&quot;> 
+    <link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;>
+    <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;></script>
+  </head>
+
+  <body>
+
+    <div class=&quot;mobile-header z-depth-1&quot;>
+
+      <div class=&quot;row&quot;>
+        <div class=&quot;col-2&quot;>
+          <a href=&quot;#&quot; data-activates=&quot;sidebar&quot; class=&quot;button-collapse&quot; style=&quot;&quot;>
+            <i class=&quot;material-icons&quot;>menu</i>
+          </a>
+        </div>
+        <div class=&quot;col&quot;>
+          <h4>Bienvenido *usuario*</h4>
+        </div>
+      </div>
+
+    </div>
+
+    <div class=&quot;main-wrapper&quot;>
+
+      <div class=&quot;sidebar-wrapper z-depth-2 side-nav fixed&quot; id=&quot;sidebar&quot;>
+
+        <div class=&quot;sidebar-title&quot;>
+          <h4>Bienvenido *usuario*</h4>
+          <img id=&quot;logo&quot; src=http://gacse.com.mx/imagenes/logo_color-01.png>
+          <h5 id=&quot;eventDayName&quot;>Fecha</h5>
+        </div>
+        <div class=&quot;sidebar-events&quot; id=&quot;sidebarEvents&quot;>
+          <div class=&quot;empty-message&quot;>No hay citas registradas este día</div>
+        </div>
+<div class=&quot;sidebar-events&quot; id=&quot;sidebarEvents&quot;>
+          <button href= javascript:closed(); id=logout class=&quot;empty-message&quot;>Cerrar sesión</button>
+        </div>
+      </div>
+
+
+
+
+
+      <div class=&quot;content-wrapper grey lighten-3&quot;>
+        <div class=&quot;container&quot;>
+
+          <div class=&quot;calendar-wrapper z-depth-2&quot;>
+
+            <div class=&quot;header-background&quot;>
+              <div class=&quot;calendar-header&quot;>
+
+                <a class=&quot;prev-button&quot; id=&quot;prev&quot;>
+                  <i class=&quot;material-icons&quot;>keyboard_arrow_left</i>
+                </a>
+                <a class=&quot;next-button&quot; id=&quot;next&quot;>
+                  <i class=&quot;material-icons&quot;>keyboard_arrow_right</i>
+                </a>
+
+                <div class=&quot;row header-title&quot;>
+
+                  <div class=&quot;header-text&quot;>
+                    <h3 id=&quot;month-name&quot;>Febrero</h3>
+                    <h5 id=&quot;todayDayName&quot;>Hoy es viernes 7 Feb</h5>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class=&quot;calendar-content&quot;>
+              <div id=&quot;calendar-table&quot; class=&quot;calendar-cells&quot;>
+
+                <div id=&quot;table-header&quot;>
+                  <div class=&quot;row&quot;>
+                    <div class=&quot;col&quot;>Dom</div>
+                    <div class=&quot;col&quot;>Lun</div>
+                    <div class=&quot;col&quot;>Mar</div>
+                    <div class=&quot;col&quot;>Mie</div>
+                    <div class=&quot;col&quot;>Jue</div>
+                    <div class=&quot;col&quot;>Vie</div>
+                    <div class=&quot;col&quot;>Sab</div>
+                  </div>
+                </div>
+
+                <div id=&quot;table-body&quot; class=&quot;&quot;>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class=&quot;calendar-footer&quot;>
+              <div class=&quot;emptyForm&quot; id=&quot;emptyForm&quot;>
+                <h4 id=&quot;emptyFormTitle&quot;>No tienes citas hoy</h4>
+                <a class=&quot;addEvent&quot; id=&quot;changeFormButton&quot;>Agregar una cita</a>
+              </div>
+              <div class=&quot;addForm&quot; id=&quot;addForm&quot;>
+                <h4>Agrega los datos de tu paciente</h4>
+
+                <div class=&quot;row&quot;>
+                  <div class=&quot;input-field col s6&quot;>
+                    <input id=&quot;eventNameInput&quot; type=&quot;text&quot; class=&quot;validate&quot;>
+                    <label for=&quot;eventNameInput&quot;>Nombre del paciente</label>
+                  </div>
+                  <div class=&quot;row&quot;>
+                  <div class=&quot;input-field col s6&quot;>
+                    <input id=&quot;eventAppatInput&quot; type=&quot;text&quot; class=&quot;validate&quot;>
+                    <label for=&quot;eventAppatInput&quot;>Apellido paterno</label>
+                  </div>
+                  <div class=&quot;input-field col s6&quot;>
+                    <input id=&quot;eventObsInput&quot; type=&quot;text&quot; class=&quot;validate&quot;>
+                    <label for=&quot;eventObsInput&quot;>Observaciones</label>
+                  </div>
+                </div>
+
+                <div class=&quot;addEventButtons&quot;>
+                  <a class=&quot;waves-effect waves-light btn blue lighten-2&quot; id=&quot;addEventButton&quot;>Agregar</a>
+                  <a class=&quot;waves-effect waves-light btn grey lighten-2&quot; id=&quot;cancelAdd&quot;>Cancelar</a>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js&quot; integrity=&quot;sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh&quot;
+            crossorigin=&quot;anonymous&quot;></script>
+    <script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js&quot; integrity=&quot;sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ&quot;
+            crossorigin=&quot;anonymous&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js&quot;></script>
+    <script>
+      $(&quot;.button-collapse&quot;).sideNav();
+    </script>
+  </body>
+</html>
+    <script src=&quot;https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js&quot;></script>
+
+  
+      <script id=&quot;rendered-js&quot; >
+var calendar = document.getElementById(&quot;calendar-table&quot;);
+var gridTable = document.getElementById(&quot;table-body&quot;);
+var currentDate = new Date();
+var selectedDate = currentDate;
+var selectedDayBlock = null;
+var globalEventObj = {};
+
+var sidebar = document.getElementById(&quot;sidebar&quot;);
+
+function createCalendar(date, side) {
+  var currentDate = date;
+  var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+  var monthTitle = document.getElementById(&quot;month-name&quot;);
+  var monthName = currentDate.toLocaleString(&quot;en-US&quot;, {
+    month: &quot;long&quot; });
+
+  var yearNum = currentDate.toLocaleString(&quot;en-US&quot;, {
+    year: &quot;numeric&quot; });
+
+  monthTitle.innerHTML = `${monthName} ${yearNum}`;
+
+  if (side == &quot;left&quot;) {
+    gridTable.className = &quot;animated fadeOutRight&quot;;
+  } else {
+    gridTable.className = &quot;animated fadeOutLeft&quot;;
+  }
+
+  setTimeout(() => {
+    gridTable.innerHTML = &quot;&quot;;
+
+    var newTr = document.createElement(&quot;div&quot;);
+    newTr.className = &quot;row&quot;;
+    var currentTr = gridTable.appendChild(newTr);
+
+    for (let i = 1; i < startDate.getDay(); i++) {if (window.CP.shouldStopExecution(0)) break;
+      let emptyDivCol = document.createElement(&quot;div&quot;);
+      emptyDivCol.className = &quot;col empty-day&quot;;
+      currentTr.appendChild(emptyDivCol);
+    }window.CP.exitedLoop(0);
+
+    var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    lastDay = lastDay.getDate();
+
+    for (let i = 1; i <= lastDay; i++) {if (window.CP.shouldStopExecution(1)) break;
+      if (currentTr.children.length >= 7) {
+        currentTr = gridTable.appendChild(addNewRow());
+      }
+      let currentDay = document.createElement(&quot;div&quot;);
+      currentDay.className = &quot;col&quot;;
+      if (selectedDayBlock == null &amp;&amp; i == currentDate.getDate() || selectedDate.toDateString() == new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString()) {
+        selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+
+        document.getElementById(&quot;eventDayName&quot;).innerHTML = selectedDate.toLocaleString(&quot;en-US&quot;, {
+          month: &quot;long&quot;,
+          day: &quot;numeric&quot;,
+          year: &quot;numeric&quot; });
+
+
+        selectedDayBlock = currentDay;
+        setTimeout(() => {
+          currentDay.classList.add(&quot;blue&quot;);
+          currentDay.classList.add(&quot;lighten-3&quot;);
+        }, 900);
+      }
+      currentDay.innerHTML = i;
+
+      //show marks
+      if (globalEventObj[new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString()]) {
+        let eventMark = document.createElement(&quot;div&quot;);
+        eventMark.className = &quot;day-mark&quot;;
+        currentDay.appendChild(eventMark);
+      }
+
+      currentTr.appendChild(currentDay);
+    }window.CP.exitedLoop(1);
+
+    for (let i = currentTr.getElementsByTagName(&quot;div&quot;).length; i < 7; i++) {if (window.CP.shouldStopExecution(2)) break;
+      let emptyDivCol = document.createElement(&quot;div&quot;);
+      emptyDivCol.className = &quot;col empty-day&quot;;
+      currentTr.appendChild(emptyDivCol);
+    }window.CP.exitedLoop(2);
+
+    if (side == &quot;left&quot;) {
+      gridTable.className = &quot;animated fadeInLeft&quot;;
+    } else {
+      gridTable.className = &quot;animated fadeInRight&quot;;
+    }
+
+    function addNewRow() {
+      let node = document.createElement(&quot;div&quot;);
+      node.className = &quot;row&quot;;
+      return node;
+    }
+
+  }, !side ? 0 : 270);
+}
+
+createCalendar(currentDate);
+
+var todayDayName = document.getElementById(&quot;todayDayName&quot;);
+todayDayName.innerHTML = &quot;Today is &quot; + currentDate.toLocaleString(&quot;en-US&quot;, {
+  weekday: &quot;long&quot;,
+  day: &quot;numeric&quot;,
+  month: &quot;short&quot; });
+
+
+var prevButton = document.getElementById(&quot;prev&quot;);
+var nextButton = document.getElementById(&quot;next&quot;);
+
+prevButton.onclick = function changeMonthPrev() {
+  currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+  createCalendar(currentDate, &quot;left&quot;);
+};
+nextButton.onclick = function changeMonthNext() {
+  currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+  createCalendar(currentDate, &quot;right&quot;);
+};
+
+function addEvent(name, appat, obs) {
+  if (!globalEventObj[selectedDate.toDateString()]) {
+    globalEventObj[selectedDate.toDateString()] = {};
+  }
+  globalEventObj[selectedDate.toDateString()][name] =`${appat} 
+                                                       ${obs}`;
+}
+
+function showEvents() {
+  let sidebarEvents = document.getElementById(&quot;sidebarEvents&quot;);
+  let objWithDate = globalEventObj[selectedDate.toDateString()];
+
+  sidebarEvents.innerHTML = &quot;&quot;;
+
+  if (objWithDate) {
+    let eventsCount = 0;
+    for (key in globalEventObj[selectedDate.toDateString()]) {
+      let eventContainer = document.createElement(&quot;div&quot;);
+      eventContainer.className = &quot;eventCard&quot;;
+
+      let eventNombre = document.createElement(&quot;div&quot;);
+      eventNombre.className = &quot;eventCard-nombre&quot;;
+
+      let eventApellido = document.createElement(&quot;div&quot;);
+      eventApellido.className = &quot;eventCard-apellido&quot;;
+
+      let eventDescription = document.createElement(&quot;div&quot;);
+      eventDescription.className = &quot;eventCard-observaciones&quot;;
+
+      eventNombre.appendChild(document.createTextNode(key));
+      eventContainer.appendChild(eventNombre);
+
+      eventApellido.appendChild(document.createTextNode(objWithDate[key]));
+      eventContainer.appendChild(eventApellido);
+
+      eventDescription.appendChild(document.createTextNode(objWithDate[key]));
+      eventContainer.appendChild(eventDescription);
+
+      let markWrapper = document.createElement(&quot;div&quot;);
+      markWrapper.className = &quot;eventCard-mark-wrapper&quot;;
+      let mark = document.createElement(&quot;div&quot;);
+      mark.classList = &quot;eventCard-mark&quot;;
+      markWrapper.appendChild(mark);
+      eventContainer.appendChild(markWrapper);
+
+      sidebarEvents.appendChild(eventContainer);
+
+      eventsCount++;
+    }
+    let emptyFormMessage = document.getElementById(&quot;emptyFormTitle&quot;);
+    emptyFormMessage.innerHTML = `${eventsCount} events now`;
+  } else {
+    let emptyMessage = document.createElement(&quot;div&quot;);
+    emptyMessage.className = &quot;empty-message&quot;;
+    emptyMessage.innerHTML = &quot;No hay citas registradas este día&quot;;
+    sidebarEvents.appendChild(emptyMessage);
+    let emptyFormMessage = document.getElementById(&quot;emptyFormTitle&quot;);
+    emptyFormMessage.innerHTML = &quot;No hay eventos todavía&quot;;
+  }
+}
+
+gridTable.onclick = function (e) {
+
+  if (!e.target.classList.contains(&quot;col&quot;) || e.target.classList.contains(&quot;empty-day&quot;)) {
+    return;
+  }
+
+  if (selectedDayBlock) {
+    if (selectedDayBlock.classList.contains(&quot;blue&quot;) &amp;&amp; selectedDayBlock.classList.contains(&quot;lighten-3&quot;)) {
+      selectedDayBlock.classList.remove(&quot;blue&quot;);
+      selectedDayBlock.classList.remove(&quot;lighten-3&quot;);
+    }
+  }
+  selectedDayBlock = e.target;
+  selectedDayBlock.classList.add(&quot;blue&quot;);
+  selectedDayBlock.classList.add(&quot;lighten-3&quot;);
+
+  selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
+
+  showEvents();
+
+  document.getElementById(&quot;eventDayName&quot;).innerHTML = selectedDate.toLocaleString(&quot;en-US&quot;, {
+    month: &quot;long&quot;,
+    day: &quot;numeric&quot;,
+    year: &quot;numeric&quot; });
+
+
+};
+
+var changeFormButton = document.getElementById(&quot;changeFormButton&quot;);
+var addForm = document.getElementById(&quot;addForm&quot;);
+changeFormButton.onclick = function (e) {
+  addForm.style.top = 0;
+};
+
+var cancelAdd = document.getElementById(&quot;cancelAdd&quot;);
+cancelAdd.onclick = function (e) {
+  addForm.style.top = &quot;100%&quot;;
+  let inputs = addForm.getElementsByTagName(&quot;input&quot;);
+  for (let i = 0; i < inputs.length; i++) {if (window.CP.shouldStopExecution(3)) break;
+    inputs[i].value = &quot;&quot;;
+  }window.CP.exitedLoop(3);
+  let labels = addForm.getElementsByTagName(&quot;label&quot;);
+  for (let i = 0; i < labels.length; i++) {if (window.CP.shouldStopExecution(4)) break;
+    labels[i].className = &quot;&quot;;
+  }window.CP.exitedLoop(4);
+};
+
+var addEventButton = document.getElementById(&quot;addEventButton&quot;);
+addEventButton.onclick = function (e) {
+  let name = document.getElementById(&quot;eventNameInput&quot;).value.trim();
+  let appat = document.getElementById(&quot;eventAppatInput&quot;).value.trim();
+  let obs = document.getElementById(&quot;eventObsInput&quot;).value.trim();
+
+  if (!name || !appat || !obs) {
+    document.getElementById(&quot;eventNameInput&quot;).value = &quot;&quot;;
+    document.getElementById(&quot;eventAppatInput&quot;).value = &quot;&quot;;
+    document.getElementById(&quot;eventObsInput&quot;).value = &quot;&quot;;
+    let labels = addForm.getElementsByTagName(&quot;label&quot;);
+    for (let i = 0; i < labels.length; i++) {if (window.CP.shouldStopExecution(5)) break;
+      labels[i].className = &quot;&quot;;
+    }window.CP.exitedLoop(5);
+    return;
+  }
+
+  addEvent(name, appat, obs);
+  showEvents();
+
+  if (!selectedDayBlock.querySelector(&quot;.day-mark&quot;)) {
+    selectedDayBlock.appendChild(document.createElement(&quot;div&quot;)).className = &quot;day-mark&quot;;
+  }
+
+  let inputs = addForm.getElementsByTagName(&quot;input&quot;);
+  for (let i = 0; i < inputs.length; i++) {if (window.CP.shouldStopExecution(6)) break;
+    inputs[i].value = &quot;&quot;;
+  }window.CP.exitedLoop(6);
+  let labels = addForm.getElementsByTagName(&quot;label&quot;);
+  for (let i = 0; i < labels.length; i++) {if (window.CP.shouldStopExecution(7)) break;
+    labels[i].className = &quot;&quot;;
+  }window.CP.exitedLoop(7);
+
+};
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
+" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups  allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation" allow="accelerometer; camera; encrypted-media; display-capture; geolocation; gyroscope; microphone; midi; clipboard-read; clipboard-write; web-share" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe">
+      </iframe>
+
+  </div>
+
+
+</body></html>

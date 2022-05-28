@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33b5e5">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+    
+
+    <link rel="stylesheet" id="roboto-subset.css-css" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5" type="text/css" media="all">
+
+    
+    <meta charset="utf-8">
+    <title>Agenda Médica Login</title>
+    
+
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://mdbootstrap.com/docs/standard/extended/login/">
+    <meta property="og:site_name" content="MDB - Material Design for Bootstrap">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:video" content="">
+    <meta property="fb:admins" content="443467622524287">
+    <meta property="og:type" content="website">
+
+    <link rel="shortcut icon" href="https://t4.ftcdn.net/jpg/02/29/53/11/360_F_229531197_jmFcViuzXaYOQdoOK1qyg7uIGdnuKhpt.jpg">
+
+    
+    <script src="https://connect.facebook.net/signals/config/289867067833087?v=2.9.61&amp;r=stable" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script type="text/javascript" async="" src="https://cdn.mouseflow.com/projects/9165eec4-fcd5-4c79-aa25-5d2d8d5eee4d.js"></script><script type="text/javascript" async="" src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-W7MBMN"></script><script data-cfasync="false">
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7MBMN');
+    </script>
+    
+
+    
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "MDBootstrap",
+                "item": "https://mdbootstrap.com/",
+                "image": "https://cdn.getmidnight.com/f0f4b6598f2cee45644673998b4f44be/2021/05/stethoscope-calendar-page-date-wood-table-background-doctor-appointment-medical-concept-189750183.jpg"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Standard",
+                "item": "https://mdbootstrap.com/docs/standard/",
+                "image": "https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/about/assets/mdb5-about.webp"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Login form",
+                "item": "https://mdbootstrap.com/docs/standard/extended/login/",
+                "image": ""
+            }]
+        }
+    </script>
+
+    <script>
+            
+        var email;
+        var password;
+        var users=["paciente1@gmail.com","paciente2@gmail.com","paciente3@gmail.com", "paciente4@gmail.com"];
+        var passwords=["1234","4321","0000","abc"];
+        var acceso=false;
+
+        function login(){
+
+
+                console.log("Funcion login ejecutada");
+
+                /*Obtener email de form*/
+
+                email = document.getElementById("email").value;
+
+                /*Obtener password de form*/
+                password = document.getElementById("password").value;
+
+                console.log("Valor de email:"+email);
+
+                console.log("Valor de pass:"+password);
+
+                /*Buscar usuario y password*/
+
+                for(i=0;i<4;i++){
+
+                    if(users[i]==email && passwords[i]==password)
+                        acceso=true;
+                }
+
+
+                /*Otorgar acceso si existen crecdenciales*/
+                if(acceso==true){
+                    /*Redireccionar a pagina de inicio*/
+                    location.href="calendario.html";
+                }else{
+
+                    /*En caso contrario mostrar mensaje de acceso denegado*/
+
+                    alert("Acceso denegado verifique sus datos");
+                }
+
+                
+
+
+                
+
+
+
+        }
+
+
+
+
+
+    </script>
+
+    <style>
+        #navbarNotification::after {
+            content: none !important;
+        }
+
+         
+        #main-navbar .badge {
+            position: absolute;
+            font-size: .6rem;
+            margin-top: -.1rem;
+            margin-left: -.5rem;
+            padding: .2em .45em;
+        }
+
+         
+        #main-navbar .nav-link {
+            color: rgba(0, 0, 0, .55) !important;
+            font-size: 1rem !important;
+            font-weight: 400;
+        }
+
+        #main-navbar .nav-link :hover {
+            color: rgb(76, 76, 76);
+        }
+
+
+         
+        [aria-labelledby=new-mdb-technologies-dropdown] li {
+            background-color: rgb(255, 255, 255) !important;
+        }
+
+        [aria-labelledby=new-mdb-technologies-dropdown] li :hover {
+            background-color: #EEEEEE !important;
+            box-shadow: none !important;
+        }
+
+        [aria-labelledby=userDropdown] a {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: none !important;
+        }
+
+        [aria-labelledby=userDropdown] a:hover {
+            background-color: #EEEEEE !important;
+        }
+
+        #navbarNotificationContent a {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: none !important;
+        }
+
+        #navbarNotificationContent a:hover {
+            background-color: #EEEEEE !important;
+        }
+    </style>
+    <style>
+        .docs-pills {
+            border-radius: 0.5rem;
+        }
+    
+        .docs-pills pre[class*="language-"] {
+            border-bottom-right-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+    
+        .docs-pills .btn-copy-code,
+        .docs-tab-content .export-to-snippet {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            box-shadow: none !important;
+            color: #616161 !important;
+            background-color: transparent !important;
+            padding: 6px 15px !important;
+        }
+
+
+
+
+        .img-portada{
+  
+  border-radius:0px;
+  border: 0px solid #999;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background:url(https://www.portafolio.co/files/article_multimedia/uploads/2016/04/16/57125bafc638e.jpeg);
+  background-size: cover;
+  }
+.img-portada img{
+  width: 100%;
+}
+    </style>
+    <style>
+        @media (max-width: 576px) {
+            [id^=dpl-], [class^=dpl-], .mobile-hidden {
+                display: none!important;
+            }
+        }
+    </style>
+<style>INPUT:-webkit-autofill,SELECT:-webkit-autofill,TEXTAREA:-webkit-autofill{animation-name:onautofillstart}INPUT:not(:-webkit-autofill),SELECT:not(:-webkit-autofill),TEXTAREA:not(:-webkit-autofill){animation-name:onautofillcancel}@keyframes onautofillstart{}@keyframes onautofillcancel{}</style><meta http-equiv="origin-trial" content="A9wkrvp9y21k30U9lU7MJMjBj4USjLrGwV+Z8zO3J3ZBH139DOnCv3XLK2Ii40S94HG1SZ/Zeg2GSHOD3wlWngYAAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/979879318/?random=1653668471353&amp;cv=9&amp;fst=1653668471353&amp;num=1&amp;label=uIBJCPv423AQlouf0wM&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635470&amp;u_h=800&amp;u_w=1280&amp;u_ah=777&amp;u_aw=1280&amp;u_cd=24&amp;u_his=5&amp;u_tz=-300&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2wg5p1&amp;sendb=1&amp;ig=1&amp;frm=0&amp;url=https%3A%2F%2Fmdbootstrap.com%2Fdocs%2Fstandard%2Fextended%2Flogin%2F&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;tiba=Bootstrap%20Login%20Form%20-%20free%20examples%2C%20templates%20%26%20tutorial&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script></head>
+<body>
+
+<section class="pb-4">
+  <div class="bg-white border rounded-5">
+    
+    <section class="w-100 p-4 p-xl-5" style="background-color: #9A616D; border-radius: .5rem .5rem 0 0;">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <div class="img-portada"></div>
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+
+                  <form>
+
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <i class="fas fa-user-md fa-2x me-3" style="color: #ff6219;"></i>
+                      <span class="h1 fw-bold mb-0"> Tu Agenda Médica</span>
+                    </div>
+
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entra a tu cuenta</h5>
+
+                    <div class="form-outline mb-4">
+                      <input type="email" id="email" class="form-control form-control-lg">
+                      <label class="form-label" for="email" style="margin-left: 0px;">Email</label>
+                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password" class="form-control form-control-lg">
+                      <label class="form-label" for="password" style="margin-left: 0px;">Contraseña</label>
+                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                    <div class="pt-1 mb-4">
+                      <button onclick="login();" class="btn btn-dark btn-lg btn-block" type="button">Entrar</button>
+                    </div>
+
+                    <a class="small text-muted" href="#!">¿Olvidaste tu contraseña?</a>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">¿Aún no tienes cuenta? <a href="#!" style="color: #393f81;">Regístrate aquí</a></p>
+                    <a href="#!" class="small text-muted">Términos de uso</a>
+                    <a href="#!" class="small text-muted">Política de privacidad</a>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+  </div>
+</section>
+
+</body>
+</html>
